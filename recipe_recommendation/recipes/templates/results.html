@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Recipe Results{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/results.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="results-header">
+    <div class="container">
+        <div class="logo">Flavor Finder</div>
+        <div class="tagline">Discover, Cook, Enjoy — Recipes That Inspire</div>
+    </div>
+</header>
+
+<main class="main-content">
+    <section class="recipes-container">
+        <h2 class="section-title">Today's Recommendations</h2>
+
+        <div class="recipe-grid">
+            {% for recipe in recipes %}
+            <div class="recipe-card">
+                <a href="{% url 'recipe_detail' recipe.id %}">
+                    <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}" class="recipe-image">
+                </a>
+                <div class="recipe-info">
+                    <span class="recipe-type">{{ recipe.recipe_type }}</span>
+                    <h3 class="recipe-name">{{ recipe.title }}</h3>
+                    <div class="recipe-meta">
+                        <div class="meta-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            {% if recipe.time_details %} 
+                                {% for key, value in recipe.time_details.items %}
+                                    <span>⏱️ {{ key }}: {{ value }}</span><br>
+                                {% endfor %}
+                            {% else %}
+                                <span>⏱️ {{ recipe.cook_time|default:"30 mins" }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="meta-item">🍽️ Servings: {{ recipe.servings|default:"4" }}</div>
+                    </div>
+                    <a href="{% url 'recipe_detail' recipe.id %}" class="explore-btn">View Recipe</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-results">
+                <p>No recipes found. Try searching again.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

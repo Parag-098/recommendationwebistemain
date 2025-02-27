@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Search Recipes{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="search-container">
+    <h1>Search Recipes</h1>
+    <form method="GET" action="{% url 'results' %}">
+        <div class="form-group">
+            <label for="ingredients">Ingredients:</label>
+            <input type="text" id="ingredients" name="ingredients" placeholder="Enter ingredients, separated by commas">
+        </div>
+
+        <div class="form-group">
+            <label for="recipe_type">Recipe Type:</label>
+            <select id="recipe_type" name="recipe_type">
+                <option value="">Any</option>
+                <option value="5ingredientdishes">5 Ingredient Dishes</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="dessert">Dessert</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="max_calories">Max Calories:</label>
+            <input type="number" id="max_calories" name="max_calories" placeholder="Enter max calories">
+        </div>
+
+        <button type="submit">Search</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Top Recipes{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/results.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Top Recipes</h1>
+            <p>Discover a world of authentic Indian cuisine.</p>
+            <form method="GET" action="{% url 'top_recipes' %}" class="recipe-form">
+                <input type="text" name="recipe_name" placeholder="Enter Recipe Name" class="recipe-input" value="{{ query }}">
+                <button type="submit" class="btn-find-recipe">Find Recipe</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="recipes-container">
+        <div class="recipe-grid">
+            {% for recipe in recipes %}
+            <div class="recipe-card">
+                <a href="{% url 'recipe_detail' recipe.id %}">
+                    <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}" class="recipe-image">
+                </a>
+                <div class="recipe-info">
+                    <span class="recipe-type">{{ recipe.recipe_type }}</span>
+                    <h3 class="recipe-name">{{ recipe.title }}</h3>
+                    <div class="meta-item">⏱️ {{ recipe.cooking_time }} mins</div>
+                    <a href="{% url 'recipe_detail' recipe.id %}" class="explore-btn">View Recipe</a>
+                </div>
+            </div>
+            {% empty %}
+            <p>No recipes found. Try searching again.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {% if recipes.has_previous %}
+            <a href="?recipe_name={{ query }}&page=1">&laquo; First</a>
+            <a href="?recipe_name={{ query }}&page={{ recipes.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span>Page {{ recipes.number }} of {{ recipes.paginator.num_pages }}</span>
+
+        {% if recipes.has_next %}
+            <a href="?recipe_name={{ query }}&page={{ recipes.next_page_number }}">Next</a>
+            <a href="?recipe_name={{ query }}&page={{ recipes.paginator.num_pages }}">Last &raquo;</a>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

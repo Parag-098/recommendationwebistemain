@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}  
+{% block title %}Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Discover Authentic Indian</h1>
+        <p>Explore a world of Indian cuisine, tailored just for you. Find your favorite dishes and learn to cook them effortlessly!</p>
+        <a href="{% url 'search' %}" class="btn-explore">Explore Now</a>
+    </div>
+</section>
+{% endblock %}

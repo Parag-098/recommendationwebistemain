@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/recipe_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}" class="recipe-image">
+        <h1>{{ recipe.title }}</h1>
+        <div class="recipe-meta">
+            {% if time_details %}
+                {% for key, value in time_details.items %}
+                    <div class="meta-item">⏱️ {{ key }}: {{ value }}</div>
+                {% endfor %}
+            {% else %}
+                <div class="error-message">⚠️ No time details available.</div>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" onclick="openTab(event, 'recipe')">📌 Recipe</button>
+        <button class="tab" onclick="openTab(event, 'ingredients')">🍲 Ingredients</button>
+        <button class="tab" onclick="openTab(event, 'nutrition')">📊 Nutrition</button>
+    </div>
+
+    <!-- Recipe Tab -->
+    <div id="recipe" class="tab-content active">
+        <h2>📌 Directions</h2>
+        <ol class="directions-list">
+            {% if recipe.directions_list %}
+                {% for step in recipe.directions_list %}
+                    <li class="step">{{ step }}</li>
+                {% endfor %}
+            {% else %}
+                <div class="error-message">⚠️ No directions available.</div>
+            {% endif %}
+        </ol>
+    </div>
+
+    <!-- Ingredients Tab -->
+    <!-- Ingredients Tab -->
+    <div id="ingredients" class="tab-content">
+        <h2>🍲 Ingredients</h2>
+        <ul class="ingredients-list">
+            {% if recipe.ingredients_list %}
+                {% for ingredient in recipe.ingredients_list %}
+                    <li class="ingredient-item">
+                        <input type="checkbox" id="ingredient-{{ forloop.counter }}">
+                        <label for="ingredient-{{ forloop.counter }}">
+                            {{ ingredient.Quantity }} {{ ingredient.Unit }} - {{ ingredient.Name }}
+                        </label>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <div class="error-message">⚠️ No ingredients available.</div>
+            {% endif %}
+        </ul>
+    </div>
+
+
+    <!-- Nutrition Tab -->
+    <!-- Nutrition Tab -->
+    <div id="nutrition" class="tab-content">
+        <h2>📊 Nutritional Information</h2>
+        {% if nutrition_details %}
+            <table class="nutrition-table">
+                <tr><th>Component</th><th>Value</th></tr>
+                {% for key, value in nutrition_details.items %}
+                <tr><td>{{ key }}</td><td>{{ value }}</td></tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <div class="error-message">⚠️ No nutritional information available.</div>
+        {% endif %}
+    </div>
+
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var tabcontent = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+
+        var tabs = document.getElementsByClassName("tab");
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove("active");
+        }
+
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
+{% endblock %}
