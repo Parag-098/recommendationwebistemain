@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Tasty Tadka{% endblock %}</title>
+    <title>{% block title %}Food Mine{% endblock %}</title>
     
     <!-- Base CSS applied to all pages -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -17,10 +17,10 @@
         <div class="logo">Food Mine</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'help' %}">Help</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
         </nav>
         <a href="{% url 'top_recipes' %}" class="btn-book">Top Recipes</a>
@@ -33,34 +33,34 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="{% static 'images/logo.jpg' %}" alt="Tasty Tadka Logo">
-                <p>&copy; 2025 Tasty Tadka, Inc. <br> All rights reserved.</p>
+                <img src="{% static 'images/logo.jpeg' %}" alt="Food Mine Logo">
+                <p>&copy; 2025 Food Mine, Inc. <br> All rights reserved.</p>
             </div>
             <div class="footer-links">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'help' %}">Help</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h3>Explore Further</h3>
                 <ul>
-                    <li><a href="#">Cuisine Styles</a></li>
-                    <li><a href="#">Chef Spotlight</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="{% url 'coming_soon' %}">Cuisine Styles</a></li>
+                    <li><a href="{% url 'coming_soon' %}">Chef Spotlight</a></li>
+                    <li><a href="{% url 'coming_soon' %}">Sustainability</a></li>
+                    <li><a href="{% url 'coming_soon' %}">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h3>Connect With Us</h3>
                 <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
+                    <li><a href="https://www.facebook.com/share/p/18UTmKnUZj/">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/food_mine_worth_every_dine/?utm_source=qr&igsh=czB3OWtxODlwZ3hj#">Instagram</a></li>
                     <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="https://pin.it/MUOvhzeZL">Pinterest</a></li>
                 </ul>
             </div>
         </div>

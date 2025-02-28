@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Food Mine{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="about-header">
+    <div class="container">
+        <div class="logo">Food Mine</div>
+        <div class="tagline">Discover, Cook, Enjoy — Your Gateway to Global Flavors</div>
+    </div>
+</header>
+
+<main class="main-content">
+    <section class="about-container">
+        <h2 class="section-title">Who We Are</h2>
+        <p>Food Mine is your ultimate destination for discovering diverse and delicious recipes from around the world. We believe that food brings people together, and our mission is to make cooking easy, enjoyable, and accessible for everyone.</p>
+        
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>🌍 Our Mission</h3>
+                <p>At Food Mine, we aim to bring the world’s flavors to your kitchen. Whether you're a beginner or a seasoned chef, our curated recipes are designed to inspire and help you explore new cuisines.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>📖 Our Story</h3>
+                <p>Founded by a team of food enthusiasts, Food Mine started as a small passion project. Over time, it has grown into a platform where food lovers can discover, cook, and share their favorite recipes with a global community.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>👨‍🍳 Our Approach</h3>
+                <p>We focus on authenticity while making recipes easy to follow. From traditional dishes to modern fusion, every recipe is carefully tested to ensure the best results in your kitchen.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <h2 class="section-title">Our Values</h2>
+        <div class="values-grid">
+            <div class="value-item">🌱 Sustainability - We promote mindful eating and reduce food waste.</div>
+            <div class="value-item">💡 Innovation - We experiment with flavors and techniques.</div>
+            <div class="value-item">👐 Community - We foster a space for food lovers to connect.</div>
+            <div class="value-item">🍽️ Inclusivity - Recipes for all diets and preferences.</div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

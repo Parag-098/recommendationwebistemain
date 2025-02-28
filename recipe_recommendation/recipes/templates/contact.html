@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - Food Mine{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="contact-header">
+    <div class="container">
+        <h1>Contact Food Mine</h1>
+        <p>We're here to assist you! Reach out for support or feedback.</p>
+    </div>
+</header>
+
+<main class="main-content">
+    <section class="contact-container">
+        <h2 class="section-title">Get in Touch</h2>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>📧 Email Us</h3>
+                <p>For general inquiries, email us at:</p>
+                <a href="mailto:support@foodmine.com" class="contact-btn">support@foodmine.com</a>
+            </div>
+
+            <div class="contact-card">
+                <h3>📍 Address</h3>
+                <p>123 Culinary Street, Food Town, FM 10001</p>
+            </div>
+
+            <div class="contact-card">
+                <h3>📞 Call Us</h3>
+                <p>Mon-Fri: 9AM - 6PM</p>
+                <a href="tel:+1234567890" class="contact-btn">+1 234 567 890</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">Send Us a Message</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Type your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+</main>
+{% endblock %}

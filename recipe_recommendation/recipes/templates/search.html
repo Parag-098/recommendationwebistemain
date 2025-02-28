@@ -1,39 +1,135 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Search Recipes{% endblock %}
+{% block title %}Food Mine - Find Your Perfect Recipe{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/search.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="search-container">
-    <h1>Search Recipes</h1>
-    <form method="GET" action="{% url 'results' %}">
-        <div class="form-group">
-            <label for="ingredients">Ingredients:</label>
-            <input type="text" id="ingredients" name="ingredients" placeholder="Enter ingredients, separated by commas">
-        </div>
 
-        <div class="form-group">
-            <label for="recipe_type">Recipe Type:</label>
-            <select id="recipe_type" name="recipe_type">
-                <option value="">Any</option>
-                <option value="5ingredientdishes">5 Ingredient Dishes</option>
-                <option value="breakfast">Breakfast</option>
-                <option value="lunch">Lunch</option>
-                <option value="dinner">Dinner</option>
-                <option value="dessert">Dessert</option>
-            </select>
-        </div>
+<!-- Header -->
+<header class="main-header">
+    <div class="container">
+        <div class="logo">Food Mine</div>
+        <div class="tagline">Discover and explore delicious recipes tailored to your taste</div>
+    </div>
+</header>
 
-        <div class="form-group">
-            <label for="max_calories">Max Calories:</label>
-            <input type="number" id="max_calories" name="max_calories" placeholder="Enter max calories">
-        </div>
+<!-- Recipe Categories Navigation -->
+<nav class="category-nav">
+    <ul class="category-menu">
+        <li class="dropdown">
+            <span>Meal Type</span>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'results' %}?recipe_type=breakfastandbrunch">Breakfast & Brunch</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=lunch">Lunch</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=main-dish">Main Dish</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=familydinner">Family Dinner</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <span>Cuisine</span>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'results' %}?recipe_type=chinese">Chinese</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=indian">Indian</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=italian">Italian</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=japanese">Japanese</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=korean">Korean</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=mexican">Mexican</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=thai">Thai</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <span>Occasion/Festival</span>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'results' %}?recipe_type=christmas">Christmas</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=diwali">Diwali</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=halloween">Halloween</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=ramdan">Ramadan</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <span>Dish Type</span>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'results' %}?recipe_type=5ingredientdishes">5 Ingredient Dishes</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=30minutemeal">30 Minute Meals</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=comfortfood">Comfort Food</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=desserts">Desserts</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=drinks">Drinks</a></li>
+                <li><a href="{% url 'results' %}?recipe_type=seafood">Seafood</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
 
-        <button type="submit">Search</button>
-    </form>
-</div>
+<!-- Search Section -->
+<section class="search-section">
+    <div class="search-container">
+        <h1>Search Recipes</h1>
+        <form method="GET" action="{% url 'results' %}">
+            <div class="search-box">
+                <div class="ingredient-search">
+                    <input type="text" id="ingredients" name="ingredients" placeholder="Search by ingredients">
+                </div>
+
+                <!-- Recipe Type Selector as Dragdown Filter -->
+                <div class="meal-type-selector">
+                    <label for="recipe_type">All Recipe Types</label>
+                    <select id="recipe_type" name="recipe_type">
+                        <option value="">Select a category</option>
+                        <optgroup label="Meal Type">
+                            <option value="breakfastandbrunch">Breakfast & Brunch</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="main-dish">Main Dish</option>
+                            <option value="familydinner">Family Dinner</option>
+                        </optgroup>
+                        <optgroup label="Cuisine">
+                            <option value="chinese">Chinese</option>
+                            <option value="indian">Indian</option>
+                            <option value="italian">Italian</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="korean">Korean</option>
+                            <option value="mexican">Mexican</option>
+                            <option value="thai">Thai</option>
+                        </optgroup>
+                        <optgroup label="Occasion/Festival">
+                            <option value="christmas">Christmas</option>
+                            <option value="diwali">Diwali</option>
+                            <option value="halloween">Halloween</option>
+                            <option value="ramdan">Ramadan</option>
+                        </optgroup>
+                        <optgroup label="Dish Type">
+                            <option value="5ingredientdishes">5 Ingredient Dishes</option>
+                            <option value="30minutemeal">30 Minute Meals</option>
+                            <option value="comfortfood">Comfort Food</option>
+                            <option value="desserts">Desserts</option>
+                            <option value="drinks">Drinks</option>
+                            <option value="seafood">Seafood</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Calorie Filter Slider -->
+            <div class="calorie-filter">
+                <h3>Calorie Range:</h3>
+                <div class="range-slider">
+                    <span>0</span>
+                    <input type="range" id="max_calories" name="max_calories" min="0" max="1000" value="500">
+                    <span>1000+</span>
+                </div>
+                <div class="values">
+                    <span>Low Calorie</span>
+                    <span id="calorie-value">500 calories</span>
+                    <span>High Calorie</span>
+                </div>
+            </div>
+
+            <button type="submit" class="search-button">Find Recipes</button>
+        </form>
+    </div>
+</section>
+
 {% endblock %}

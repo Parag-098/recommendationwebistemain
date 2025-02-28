@@ -8,5 +8,9 @@ urlpatterns = [
     path('results/', views.search_results, name='results'),
     path('recipe/<int:recipe_id>/', views.recipe_detail, name='recipe_detail'),
     path('top_recipes/', views.top_recipes, name='top_recipes'),  # ✅ This handles name search
+    path('about/', views.about, name='about'),
+    path('help/', views.help_page, name='help'),
+    path('contact/', views.contact_page, name='contact'),
+    path('coming-soon/', views.coming_soon, name='coming_soon'),
 ]
 

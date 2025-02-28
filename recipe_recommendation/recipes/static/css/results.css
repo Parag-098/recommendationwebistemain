@@ -190,6 +190,30 @@
     color: #fff;
 }
 
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.page-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.page-btn:hover {
+    background-color: #ff5252;
+}
+
+.current-page {
+    font-weight: bold;
+    color: var(--primary-color);
+}
 
 /* RESPONSIVENESS */
 @media (max-width: 1024px) {
@@ -209,6 +233,7 @@
         gap: 10px !important;
     }
 }
+
 
 @media (max-width: 480px) {
     .recipe-grid {

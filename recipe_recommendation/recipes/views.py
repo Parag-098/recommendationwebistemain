@@ -27,20 +27,52 @@ def load_recipes():
 
     recipes = []
     for _, row in df.iterrows():
+        # Extract time details
+        time_data = safe_json_load(row.get("time", ""), default=[])
+        time_details = {}
+
+        for item in time_data:
+            label = item.get("Label", "").strip().replace(" ", "_").replace(":", "")  # Convert spaces to underscores
+            value = item.get("Value", "").strip()
+            time_details[label] = value
+
+        # 🔥 Extract servings from multiple possible locations
+        servings = row.get("servings", "").strip()  # Default to direct column
+
+        # Check if servings exist in `time` column
+        if not servings:
+            for item in time_data:
+                if "Servings" in item["Label"]:
+                    servings = item["Value"]
+                    break
+
+        # Check `nutrition_details` for servings if still empty
+        if not servings:
+            nutrition_data = safe_json_load(row.get("nutritions", ""), default=[])
+            for item in nutrition_data:
+                if "Servings" in item["Label"]:
+                    servings = item["Value"]
+                    break
+
+        # Extract nutrition details safely
+        nutrition_details = {item["Label"]: item["Value"] for item in safe_json_load(row.get("nutritions", ""), default=[]) if isinstance(item, dict)}
+
         recipes.append({
-            "id": row.get("id", ""),  # Use manually added ID
+            "id": row.get("id", ""),  
             "title": row.get("title", ""),
             "image_url": row.get("image_url", ""),
             "cooking_time": row.get("cooking_time", ""),
             "recipe_type": row.get("recipe_type", ""),
             "ingredients_list": safe_json_load(row.get("ingredients", ""), default=[]),
             "directions_list": safe_json_load(row.get("directions", ""), default=[]),
-            "servings": row.get("servings", "N/A"),
-            "time_details": safe_json_load(row.get("time", ""), default={}),
-            "nutrition_details": {item["Label"]: item["Value"] for item in safe_json_load(row.get("nutritions", ""), default=[])},
+            "servings": servings if servings else "N/A",  # ✅ Ensure servings is not empty
+            "time_details": time_details,
+            "nutrition_details": nutrition_details,
         })
     
     return recipes
+
+
 
 # Home Page
 def home(request):
@@ -132,3 +164,15 @@ def top_recipes(request):
 # Search by Name Page
 def search_by_name(request):
     return render(request, 'search_by_name.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def help_page(request):
+    return render(request, 'help.html')
+
+def contact_page(request):
+    return render(request, 'contact.html')
+
+def coming_soon(request):
+    return render(request, 'coming_soon.html')

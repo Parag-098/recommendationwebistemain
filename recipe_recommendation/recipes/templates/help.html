@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Help - Food Mine{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/help.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="help-header">
+    <div class="container">
+        <h1>How Can We Help?</h1>
+        <p>Find answers to common questions and learn how to use Food Mine.</p>
+    </div>
+</header>
+
+<main class="main-content">
+    <section class="help-container">
+        <h2 class="section-title">Using Food Mine</h2>
+        <p>Discover how to explore recipes, search efficiently, and filter results based on your preferences.</p>
+
+        <div class="help-grid">
+            <div class="help-card">
+                <h3>🔍 Searching for Recipes</h3>
+                <p>Use the search bar to find recipes by name or ingredient. Filter results by cuisine, cooking time, or calories.</p>
+            </div>
+
+            <div class="help-card">
+                <h3>🧑‍🍳 Viewing Recipe Details</h3>
+                <p>Click on a recipe to see ingredients, step-by-step instructions, cooking time, and nutritional information.</p>
+            </div>
+
+            <div class="help-card">
+                <h3>🍽️ Filtering Recipes</h3>
+                <p>Use the filter options to refine your search based on recipe type, dietary needs, or cooking time.</p>
+            </div>
+
+            <div class="help-card">
+                <h3>❓ Need More Help?</h3>
+                <p>If you have additional questions, visit our <a href="{% url 'contact' %}">Contact Us</a> page.</p>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

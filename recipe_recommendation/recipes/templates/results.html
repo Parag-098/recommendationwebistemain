@@ -28,22 +28,35 @@
                 <div class="recipe-info">
                     <span class="recipe-type">{{ recipe.recipe_type }}</span>
                     <h3 class="recipe-name">{{ recipe.title }}</h3>
+                    
+                    <!-- Time and Servings Meta -->
                     <div class="recipe-meta">
                         <div class="meta-item">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"/>
                                 <polyline points="12 6 12 12 16 14"/>
                             </svg>
-                            {% if recipe.time_details %} 
-                                {% for key, value in recipe.time_details.items %}
-                                    <span>⏱️ {{ key }}: {{ value }}</span><br>
-                                {% endfor %}
-                            {% else %}
-                                <span>⏱️ {{ recipe.cook_time|default:"30 mins" }}</span>
-                            {% endif %}
+                            <span>⏱️ 
+                                {% if recipe.time_details %}
+                                    <span>⏱️ 
+                                        {% if recipe.time_details.Prep_Time %} Prep: {{ recipe.time_details.Prep_Time }}, {% endif %}
+                                        {% if recipe.time_details.Cook_Time %} Cook: {{ recipe.time_details.Cook_Time }}, {% endif %}
+                                        {% if recipe.time_details.Total_Time %} Total: {{ recipe.time_details.Total_Time }} {% endif %}
+                                    </span>
+                                {% else %}
+                                    <span>⏱️ Cook Time: {{ recipe.cooking_time|default:"30 mins" }}</span>
+                                {% endif %}
+
+                            </span>
                         </div>
-                        <div class="meta-item">🍽️ Servings: {{ recipe.servings|default:"4" }}</div>
+                        
+                        <!-- Display Servings Properly (Fixed) -->
+                        <div class="meta-item">
+                            🍽️ Servings: {% if recipe.servings and recipe.servings != "N/A" %} {{ recipe.servings }} {% else %} Not Available {% endif %}
+                        </div>
+                        
                     </div>
+
                     <a href="{% url 'recipe_detail' recipe.id %}" class="explore-btn">View Recipe</a>
                 </div>
             </div>
@@ -55,4 +68,20 @@
         </div>
     </section>
 </main>
+
+<!-- Pagination Section -->
+<div class="pagination">
+    {% if recipes.has_previous %}
+        <a href="?page=1" class="page-btn">First</a>
+        <a href="?page={{ recipes.previous_page_number }}" class="page-btn">Previous</a>
+    {% endif %}
+
+    <span class="current-page">Page {{ recipes.number }} of {{ recipes.paginator.num_pages }}</span>
+
+    {% if recipes.has_next %}
+        <a href="?page={{ recipes.next_page_number }}" class="page-btn">Next</a>
+        <a href="?page={{ recipes.paginator.num_pages }}" class="page-btn">Last</a>
+    {% endif %}
+</div>
+
 {% endblock %}

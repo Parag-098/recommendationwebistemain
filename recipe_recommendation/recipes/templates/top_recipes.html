@@ -4,7 +4,7 @@
 {% block title %}Top Recipes{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/results.css' %}">
+<link rel="stylesheet" href="{% static 'css/topresults.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,31 @@
                 <div class="recipe-info">
                     <span class="recipe-type">{{ recipe.recipe_type }}</span>
                     <h3 class="recipe-name">{{ recipe.title }}</h3>
-                    <div class="meta-item">⏱️ {{ recipe.cooking_time }} mins</div>
+
+                    <!-- Time and Servings Meta -->
+                    <div class="recipe-meta">
+                        <div class="meta-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            <span>⏱️ 
+                                {% if recipe.time_details %}
+                                    {% if recipe.time_details.Prep_Time %} Prep: {{ recipe.time_details.Prep_Time }}, {% endif %}
+                                    {% if recipe.time_details.Cook_Time %} Cook: {{ recipe.time_details.Cook_Time }}, {% endif %}
+                                    {% if recipe.time_details.Total_Time %} Total: {{ recipe.time_details.Total_Time }} {% endif %}
+                                {% else %}
+                                    Cook Time: {{ recipe.cooking_time|default:"30 mins" }}
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        <!-- Display Servings -->
+                        <div class="meta-item">
+                            🍽️ Servings: {% if recipe.servings and recipe.servings != "N/A" %} {{ recipe.servings }} {% else %} Not Available {% endif %}
+                        </div>
+                    </div>
+
                     <a href="{% url 'recipe_detail' recipe.id %}" class="explore-btn">View Recipe</a>
                 </div>
             </div>

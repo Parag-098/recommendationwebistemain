@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Coming Soon - Food Mine{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/coming_soon.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="coming-soon-container">
+    <h1>Coming Soon</h1>
+    <p>We're working hard to bring you something amazing. Stay tuned!</p>
+    <div class="countdown">
+        <div class="countdown-item">
+            <div class="countdown-number">00</div>
+            <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number">00</div>
+            <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number">00</div>
+            <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number">00</div>
+            <div class="countdown-label">Seconds</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
