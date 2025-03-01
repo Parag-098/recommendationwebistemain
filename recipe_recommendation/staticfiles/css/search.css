@@ -1,0 +1,179 @@
+/* Root Variables */
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --accent-color: #ffd166;
+    --background: #f9f9f9;
+    --text-color: #2d3436;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* General Styling */
+body {
+    background-color: var(--background);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, var(--primary-color), #ff9a8b);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Category Navigation */
+.category-nav {
+    background-color: #252525;
+    padding: 15px;
+    text-align: center;
+}
+
+.category-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.category-menu .dropdown {
+    position: relative;
+    margin: 0 15px;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.category-menu .dropdown:hover {
+    background-color: var(--primary-color);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    min-width: 200px;
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    text-align: left;
+}
+
+.dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--primary-color);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Search Section */
+.search-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 20px auto;
+    box-shadow: var(--shadow);
+    max-width: 900px;
+}
+
+.search-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ingredient-search input,
+.meal-type-selector select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.search-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #ff5252;
+}
+
+.calorie-filter {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.calorie-filter h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.calorie-filter .range-slider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.calorie-filter input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity .15s ease-in-out;
+}
+
+.calorie-filter .values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+#calorie-value {
+    font-weight: bold;
+    color: var(--primary-color);
+}
